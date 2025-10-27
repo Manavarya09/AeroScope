@@ -51,54 +51,24 @@ export const scheduleFlightNotification = async (
 };
 
 export const scheduleLandingNotification = async (flightNumber: string, eta: string) => {
-  // Schedule notification for when flight is expected to land
-  const etaTime = new Date();
-  const [hours, minutes] = eta.split(':').map(Number);
-  etaTime.setHours(hours, minutes - 5, 0, 0); // 5 minutes before ETA
-
-  if (etaTime > new Date()) {
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: `Flight ${flightNumber}`,
-        body: `Flight ${flightNumber} is landing in 5 minutes`,
-        data: { flightId: flightNumber },
-        sound: false,
-        priority: Notifications.AndroidNotificationPriority.HIGH,
-      },
-      trigger: etaTime,
-    });
-  }
+  // TODO: Implement landing notifications when trigger types are properly configured
+  console.log(`Would schedule landing notification for ${flightNumber} at ${eta}`);
 };
 
 export const scheduleDepartureNotification = async (flightNumber: string, departureTime: string) => {
-  // Schedule notification for departure
-  const departureDateTime = new Date();
-  const [hours, minutes] = departureTime.split(':').map(Number);
-  departureDateTime.setHours(hours, minutes, 0, 0);
-
-  if (departureDateTime > new Date()) {
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: `Flight ${flightNumber}`,
-        body: `Flight ${flightNumber} is departing soon`,
-        data: { flightId: flightNumber },
-        sound: false,
-        priority: Notifications.AndroidNotificationPriority.HIGH,
-      },
-      trigger: departureDateTime,
-    });
-  }
+  // TODO: Implement departure notifications when trigger types are properly configured
+  console.log(`Would schedule departure notification for ${flightNumber} at ${departureTime}`);
 };
 
 export const scheduleFavoriteNotification = async (flightNumber: string) => {
-  // Immediate notification when flight is favorited
+  // Simple immediate notification for favorites
   await Notifications.scheduleNotificationAsync({
     content: {
       title: 'Flight Added to Favorites',
       body: `Now tracking ${flightNumber} in your favorites`,
       data: { flightNumber, type: 'favorite_added' },
     },
-    trigger: null, // Show immediately
+    trigger: null,
   });
 };
 

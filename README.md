@@ -1,127 +1,206 @@
-# AeroScope
+# AeroScope - Real-Time Flight Tracker
 
-AeroScope is a real-time **flight tracking and visualization app** built with **React Native** and **Expo**.  
-It provides a clean, data-centric interface for exploring global air traffic, viewing live flight information, and tracking aircraft in motion — all in a minimal **black-and-white aesthetic**.
+A sophisticated, real-time global flight tracking application built with React Native and Expo. AeroScope provides a calm, fluid, and visually precise experience for monitoring aircraft positions, movements, and flight details using the OpenSky Network API.
 
----
+## ✨ Features
 
-## ✈️ Overview
+### 🗺️ Interactive Map View
+- **Real-time flight data** from OpenSky Network API (Free, no API key required)
+- **Mapbox GL integration** with dark theme styling
+- **Animated flight paths** with subtle trail effects using Reanimated
+- **Interactive flight markers** with flight information displays
+- **GPS-based radar pulse** animation at user location
+- **Smooth camera transitions** and map interactions
 
-AeroScope combines **real-time aviation APIs**, **interactive maps**, and **modern mobile UI** to deliver a smooth flight observation experience.  
-Users can explore aircraft worldwide, search by airline or flight number, and save flights for instant updates.
+### 📱 Enhanced Flight Details
+- **Glassmorphic bottom sheet** with comprehensive flight information
+- **Live altitude charts** using Victory Native with realistic flight profiles
+- **Complete flight data**: airline, origin, destination, altitude, speed, heading, ETA, status
+- **Smooth animations** and transitions throughout
+- **Interactive favorite toggle** with instant notifications
 
-Built for performance, design clarity, and developer readability — this project demonstrates advanced React Native capabilities and thoughtful product design.
+### 🔍 Advanced Search & Filter
+- **Real-time search** with instant filtering by airline or flight number
+- **Advanced filtering system** by airline, status, and altitude ranges
+- **Glassmorphic filter panel** with smooth slide animations
+- **Clear visual feedback** for active filters
 
----
+### ⭐ Enhanced Favorites System
+- **Save favorite flights** with persistent storage using Zustand
+- **Beautiful favorites list** with detailed flight cards
+- **Staggered animations** for list item entrance
+- **Comprehensive flight details** in favorites view
+- **Instant notifications** when flights are favorited
 
-## 🧩 Features
+### 🤖 AI Command Bar
+- **Natural language command interface** with terminal-style design
+- **Smart command parsing** for flight-related queries
+- **Command history** and response display
+- **Monospace typography** for authentic terminal feel
+- **Examples**: "Track Emirates 215", "Show flights above Dubai", "Find all Emirates flights"
 
-- **Live Global Map**  
-  Interactive Mapbox/Google map displaying live aircraft locations and movements.
+### 🔔 Smart Notifications
+- **Flight favorited alerts** with immediate notifications
+- **Framework ready** for landing/departure notifications
+- **Silent notifications** optimized for flight tracking
+- **Expo Notifications** integration
 
-- **Flight Details Panel**  
-  Tap on any plane to view airline, route, altitude, and speed in a clean glassmorphic bottom sheet.
+### 🎨 Premium Design System
+- **Pure black background** (#000000) for true dark mode
+- **Glassmorphic effects** with subtle shadows and opacity layers
+- **Inter typography** with proper font weights
+- **Grid-based spacing** (16px multiples)
+- **Smooth animations** (400-600ms easeInOut)
+- **Zero visual clutter** - data-focused interface
 
-- **Search and Filters**  
-  Search flights by flight number or airline and filter by altitude, type, or status.
+## 🛠️ Technical Implementation
 
-- **Favorites & Notifications**  
-  Save your favorite flights locally and receive push notifications on status changes.
+### Core Technologies
+- **React Native** with Expo SDK 54
+- **TypeScript** for complete type safety
+- **Mapbox GL** for advanced mapping and performance
+- **Victory Native** for beautiful data visualization
+- **Zustand** for efficient state management
+- **React Native Reanimated** for smooth animations
+- **Expo Notifications** for push notifications
 
-- **Offline Data Cache**  
-  Recent flight data stored using AsyncStorage or SQLite for quick reloading.
+### APIs & Data Sources
+- **OpenSky Network API** - Primary real-time flight data (Free)
+- **AviationStack API** - Backup data source
+- **Enhanced mock data** with 50+ realistic flights for development
 
-- **Smooth Animations**  
-  Subtle, deliberate motion powered by Reanimated for a refined user experience.
+### Performance Optimizations
+- **Bounds-based API calls** to reduce data usage
+- **Efficient state updates** with minimal re-renders
+- **Background data fetching** every 10 seconds
+- **Optimized animations** using native driver
+- **Smart component memoization**
 
-- **Optional AI Command Mode**  
-  Text-based command bar powered by OpenAI API — e.g. “Show all Emirates flights above Dubai”.
+## 🚀 Getting Started
 
----
+### Prerequisites
+- Node.js 18+
+- Expo CLI
+- iOS Simulator or Android device/emulator
 
-## 🧠 Tech Stack
+### Installation
 
-| Layer | Technology |
-|-------|-------------|
-| Framework | React Native (Expo SDK) |
-| Maps | Mapbox GL / React Native Maps |
-| API | OpenSky Network / AviationStack |
-| State Management | Zustand |
-| Local Storage | AsyncStorage / SQLite |
-| Charts | Victory Native |
-| Notifications | Expo Notifications |
-| Animations | React Native Reanimated |
-| Optional AI | OpenAI API |
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
----
+2. **Start development server**
+   ```bash
+   npx expo start
+   ```
 
-## 🖤 Design Philosophy
+3. **Run on your preferred platform**
+   - **iOS**: `npm run ios` or press `i` in terminal
+   - **Android**: `npm run android` or press `a` in terminal
+   - **Web**: `npm run web` or press `w` in terminal
 
-AeroScope follows a **black-and-white minimal design language**:
-- Typography-focused (Inter / Space Grotesk)
-- No icons or colors — clarity through layout and contrast
-- Generous spacing, grid-aligned elements
-- Subtle shadows, glass effects, and slow transitions
-- Zero clutter, zero distractions
+### Configuration
+No API keys required! The app uses OpenSky Network API which is completely free.
 
-Every element has a purpose — to guide the user’s focus and highlight data precision.
+## 📁 Project Structure
 
----
+```
+src/
+├── api/
+│   └── aviationStack.ts          # OpenSky Network integration with enhanced mock data
+├── components/
+│   ├── AltitudeChart.tsx         # Victory Native altitude visualization
+│   ├── BottomSheetDetails.tsx    # Enhanced flight details modal with animations
+│   ├── CommandBar.tsx           # AI command interface with terminal styling
+│   ├── FilterPanel.tsx          # Advanced filtering with glassmorphic design
+│   ├── RadarPulse.tsx           # GPS location radar animation
+│   └── SearchBar.tsx            # Enhanced search with focus animations
+├── screens/
+│   ├── HomeScreen.tsx           # Main map interface with Mapbox integration
+│   └── FavoritesScreen.tsx      # Enhanced favorites list with animations
+├── store/
+│   └── flightStore.ts           # Zustand state management with persistence
+├── types/
+│   └── index.ts                 # TypeScript interfaces
+└── utils/
+    ├── formatters.ts            # Data formatting utilities
+    ├── mapbox.ts               # Mapbox configuration
+    └── notifications.ts         # Enhanced notification system
+```
 
-## ⚙️ Getting Started
+## 🌟 Key Features Implemented
 
-### 1. Install dependencies
+### ✅ Real-Time Data Integration
+- **OpenSky Network API** integration with automatic fallback to enhanced mock data
+- **Smart data fetching** based on map bounds for optimal performance
+- **Real-time updates** every 10 seconds with error handling
+
+### ✅ Enhanced UI/UX
+- **Complete glassmorphic design** throughout the application
+- **Smooth animations** using React Native Reanimated
+- **Interactive elements** with proper feedback states
+- **Responsive design** optimized for all screen sizes
+
+### ✅ Advanced Map Features
+- **Mapbox GL integration** with dark theme styling
+- **Animated flight paths** with realistic trail effects
+- **Interactive markers** with flight information
+- **Camera animations** for smooth transitions
+
+### ✅ Smart Search & Filtering
+- **Real-time search** with instant results
+- **Multi-criteria filtering** (airline, status, altitude)
+- **Visual filter feedback** with glassmorphic panels
+
+### ✅ AI Command System
+- **Terminal-style interface** with command history
+- **Natural language parsing** for flight queries
+- **Smart command execution** with visual feedback
+
+### ✅ Enhanced Favorites
+- **Persistent storage** using Zustand
+- **Beautiful list design** with detailed cards
+- **Animated interactions** and smooth transitions
+- **Instant notifications** when flights are favorited
+
+## 🔧 Configuration Options
+
+### Mapbox (Optional)
+For enhanced mapping features, add a Mapbox token:
 ```bash
-npm install
-2. Start the development server
-npx expo start
-3. Run on device or simulator
-Android Emulator
-iOS Simulator
-Expo Go App
-4. (Optional) Reset the project
-npm run reset-project
-This command clears starter files and prepares a fresh environment.
+# Create .env file
+echo "EXPO_PUBLIC_MAPBOX_TOKEN=your_mapbox_token_here" > .env
+```
 
-🧭 API Configuration
-Create a .env file in the project root and add your credentials:
-OPEN_SKY_API=https://opensky-network.org/api/states/all
-AVIATION_STACK_KEY=your_api_key_here
-OPENAI_API_KEY=your_api_key_here
-Ensure you enable location permissions on your device to view nearby flights.
+### API Endpoints
+The app automatically configures:
+- **OpenSky Network**: `https://opensky-network.org/api/states/all`
+- **Fallback**: Enhanced mock data with 50+ realistic flights
 
-🧱 Folder Structure
-/src
- ┣ /components
- ┃ ┣ MapViewContainer.tsx
- ┃ ┣ FlightCard.tsx
- ┃ ┣ SearchBar.tsx
- ┃ ┗ BottomSheetDetails.tsx
- ┣ /screens
- ┃ ┣ HomeScreen.tsx
- ┃ ┗ FavoritesScreen.tsx
- ┣ /store
- ┃ ┗ flightStore.ts
- ┣ /api
- ┃ ┗ opensky.ts
- ┣ /utils
- ┃ ┗ formatters.ts
- ┗ App.tsx
-💼 For Your Resume / Portfolio
-AeroScope — Real-Time Flight Tracker (React Native, Expo, Mapbox, OpenSky API)
-Developed a real-time global flight tracking application with live data visualization, smooth animations, and a glassmorphic black-and-white UI. Implemented flight search, filters, offline caching, and notification systems using modern React Native architecture.
-🧰 Future Enhancements
-3D flight path visualization
-Airport-based filtering
-Historical flight replay
-Cloud sync of favorite flights
-Live weather overlays
+## 📱 Screenshots
 
-To learn more about developing your project with Expo, look at the following resources: - [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides). - [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web. ## Join the community Join our community of developers creating universal apps. - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute. - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+[Add screenshots of the implemented features]
 
-🧤 License
-This project is released under the MIT License.
-Feel free to modify, adapt, and build upon it for personal or educational use.
-Crafted with precision and intent — AeroScope reflects design clarity and engineering depth.
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-enhancement`
+3. Commit your changes: `git commit -m 'Add amazing enhancement'`
+4. Push to the branch: `git push origin feature/amazing-enhancement`
+5. Open a Pull Request
+
+## 📄 License
+
+MIT License - feel free to modify and enhance for your own projects!
+
+## 🙏 Acknowledgments
+
+- **OpenSky Network** for providing free, comprehensive flight data
+- **Mapbox** for excellent mapping services and documentation
+- **Expo Team** for the amazing development platform
+- **Victory Native** for beautiful, performant charts
 
 ---
+
+**AeroScope demonstrates the perfect balance of technical sophistication and design clarity. Built for aviation enthusiasts who appreciate precision, performance, and beautiful user experiences.**

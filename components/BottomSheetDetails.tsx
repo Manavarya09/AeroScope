@@ -5,6 +5,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { useFlightStore } from '@/src/store/flightStore';
 import { FlightData } from '@/src/types';
 import AltitudeChart from '@/components/AltitudeChart';
+import { scheduleFavoriteNotification } from '@/src/utils/notifications';
 
 const { width } = Dimensions.get('window');
 
@@ -57,6 +58,8 @@ export default function BottomSheetDetails({ flight, onClose }: BottomSheetDetai
   const handleToggleFavorite = () => {
     if (flight) {
       toggleFavorite(flight.id);
+      // Show notification when flight is favorited
+      scheduleFavoriteNotification(flight.flightNumber);
     }
   };
 

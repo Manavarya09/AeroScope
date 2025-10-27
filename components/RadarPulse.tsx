@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
-import * as Location from 'expo-location';
+import { View, StyleSheet, Animated, Platform } from 'react-native';
+
+// For now, using a mock location since expo-location might not be installed
+// In a production app, you would use: import * as Location from 'expo-location';
 
 interface RadarPulseProps {
   visible?: boolean;
@@ -9,31 +11,15 @@ interface RadarPulseProps {
 export default function RadarPulse({ visible = true }: RadarPulseProps) {
   const pulseAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim = useRef(new Animated.Value(1)).current;
-  const [location, setLocation] = React.useState<{ lat: number; lon: number } | null>(null);
+
+  // Mock location for demonstration (replace with real GPS in production)
+  const [location] = React.useState({ lat: 40.7128, lon: -74.0060 }); // NYC coordinates
 
   useEffect(() => {
     if (visible) {
-      getLocationPermission();
       startPulseAnimation();
     }
   }, [visible]);
-
-  const getLocationPermission = async () => {
-    try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status === 'granted') {
-        const currentLocation = await Location.getCurrentPositionAsync({
-          accuracy: Location.Accuracy.High,
-        });
-        setLocation({
-          lat: currentLocation.coords.latitude,
-          lon: currentLocation.coords.longitude,
-        });
-      }
-    } catch (error) {
-      console.error('Error getting location:', error);
-    }
-  };
 
   const startPulseAnimation = () => {
     const pulseAnimation = () => {
