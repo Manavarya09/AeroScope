@@ -107,10 +107,9 @@ Ensure you enable location permissions on your device to view nearby flights.
  ┣ /utils
  ┃ ┗ formatters.ts
  ┗ App.tsx
-💼 For Your Resume / Portfolio
-AeroScope — Real-Time Flight Tracker (React Native, Expo, Mapbox, OpenSky API)
-Developed a real-time global flight tracking application with live data visualization, smooth animations, and a glassmorphic black-and-white UI. Implemented flight search, filters, offline caching, and notification systems using modern React Native architecture.
+
 🧰 Future Enhancements
+
 3D flight path visualization
 Airport-based filtering
 Historical flight replay
